@@ -23,6 +23,7 @@ public class RoadController
     {
         System.out.println("Сколько автомобилей сгенерировать?");
 
+        // Переменная типа Scanner
         Scanner scanner = new Scanner(System.in);
         // Переменная типа int
         int carsCount = scanner.nextInt();
@@ -58,30 +59,28 @@ public class RoadController
         int carHeight = car.height;
         // Переменная типа int
         int price = 0;
-        if (carHeight > controllerMaxHeight)
-        {
+        if (carHeight > controllerMaxHeight) {
             blockWay("высота вашего ТС превышает высоту пропускного пункта!");
             return -1;
         }
-        else if (carHeight > passengerCarMaxHeight)
-        {
+        else if (carHeight > passengerCarMaxHeight) {
             // Переменная типа double
             double weight = car.weight;
             //Грузовой автомобиль  
-            if (weight > passengerCarMaxWeight)
-            {
-                price = passengerCarPrice;
-                if (car.hasVehicle) {
-                    price = price + vehicleAdditionalPrice;
-                }
+            if (weight > passengerCarMaxWeight) {
+                price = cargoCarPrice; // Стояла цена за легковой авто
             }
             //Легковой автомобиль
             else {
-                price = cargoCarPrice;
+                price = passengerCarPrice; // Стояла цена за грузовой авто
             }
         }
         else {
             price = passengerCarPrice;
+        }
+        // Прицеп моет быть у любого ТС
+        if (car.hasVehicle) {
+            price = price + vehicleAdditionalPrice;
         }
         return price;
     }

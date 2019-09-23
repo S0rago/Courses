@@ -15,6 +15,7 @@ public class Car
 
     public String toString()
     {
+        // Переменная типа String
         String special = isSpecial ? "СПЕЦТРАНСПОРТ " : "";  // ТУТ
         return "\n=========================================\n" +
             special + "Автомобиль с номером " + number +

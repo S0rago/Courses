@@ -11,6 +11,7 @@ public class Camera
         // Переменная типа double
         double randomWeight = 600 + 10000 * Math.random();
 
+        // Переменная типа Car
         Car car = new Car();
         car.number = randomNumber;
         car.height = randomHeight;
