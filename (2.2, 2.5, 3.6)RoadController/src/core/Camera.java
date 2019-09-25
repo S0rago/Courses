@@ -13,11 +13,16 @@ public class Camera
 
         // Переменная типа Car
         Car car = new Car();
-        car.number = randomNumber;
-        car.height = randomHeight;
-        car.weight = randomWeight;
-        car.hasVehicle = Math.random() > 0.5;
-        car.isSpecial = Math.random() < 0.15;
+//        car.number = randomNumber;
+//        car.height = randomHeight;
+//        car.weight = randomWeight;
+//        car.hasVehicle = Math.random() > 0.5;
+//        car.isSpecial = Math.random() < 0.15;
+        car.setNumber(randomNumber);
+        car.setHeight(randomHeight);
+        car.setWeight(randomWeight);
+        car.setIsSpecial(Math.random() > 0.5);
+        car.setHasVehicle(Math.random() < 0.15);
 
         return car;
     }
