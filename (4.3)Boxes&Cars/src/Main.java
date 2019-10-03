@@ -10,8 +10,8 @@ public class Main {
 
         int containers = (int) Math.ceil(boxes/boxesInContainer);
         int cars = (int) Math.ceil(containers/containersInCar);
-
-        //Счетчик ящиков и контейнеров
+/*
+        Счетчик ящиков и контейнеров
         int boxCount = 1;
         int containerCount = 1;
 
@@ -26,6 +26,16 @@ public class Main {
                 }
             }
         }
+*/
+        for (int boxCount = 0, containerCount = 0, carCount = 0; boxCount < boxes; boxCount++) {
+            if (boxCount % boxesInContainer == 0) {
+                if (containerCount % containersInCar == 0)
+                    System.out.println("\nГрузовик " + ++carCount + ":");
+                System.out.println("\n\tКонтейнер " + ++containerCount + ":");
+            }
+            System.out.println("\n\t\tЯщик" + (boxCount + 1));
+        }
+
         System.out.println("Всего нужно грузовиков: " + cars);
         System.out.println("Всего нужно контейнеров: " + containers);
     }
