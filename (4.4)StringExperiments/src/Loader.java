@@ -4,8 +4,8 @@ public class Loader
 {
     public static void main(String[] args) {
         //findSum();
-        //printCodes();
-        splitName();
+        printCodes();
+        //splitName();
     }
 
     private static void findSum() {
@@ -29,11 +29,11 @@ public class Loader
     }
 
     private static void printCodes() {
-        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" +
-                "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя";
-        for (char letter : alphabet.toCharArray()) {
-            System.out.println(letter + " | " + (int) letter);
-        }
+        //String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" +
+               // "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+        for (char letter = 'A'; letter <= 'я'; letter++)
+            if (Character.isAlphabetic(letter))
+                System.out.println(letter + " | " + (int) letter);
     }
 
     private static void splitName() {
