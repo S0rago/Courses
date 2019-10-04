@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class Loader
 {
     public static void main(String[] args) {
-        findSum();
-        printCodes();
+        //findSum();
+        //printCodes();
         splitName();
     }
 
@@ -38,14 +38,18 @@ public class Loader
 
     private static void splitName() {
         System.out.println("Введите ФИО: ");
-        String[] name = (new Scanner(System.in)).nextLine().split(" ");
+        String name = (new Scanner(System.in)).nextLine();
 
-        if (name.length != 3)
+        int oneSpace = name.indexOf(" ");
+        int twoSpace = name.indexOf(" ", oneSpace + 1);
+        int threeSpace = name.indexOf(" ", twoSpace + 1);
+        if (oneSpace == -1 || twoSpace == -1 || threeSpace != -1)
             System.out.println("Имя введено некорректно");
         else {
-            System.out.println("Фамилия: " + name[0]);
-            System.out.println("Имя: " + name[1]);
-            System.out.println("Отчество: " + name[2]);
+            String[] splitName = {name.substring(0, oneSpace).trim(), name.substring(oneSpace, twoSpace).trim(), name.substring(twoSpace).trim()};
+            System.out.println("Фамилия:" + splitName[0]);
+            System.out.println("Имя:" + splitName[1]);
+            System.out.println("Отчество:" + splitName[2]);
         }
     }
 }
