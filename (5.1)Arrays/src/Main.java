@@ -43,15 +43,21 @@ public class Main {
     }
 
     private static void printCross() {
-        String cross[][] = {{"x     x"},
-                            {" x   x "},
-                            {"  x x  "},
-                            {"   x   "},
-                            {"  x x "},
-                            {" x   x "},
-                            {"x     x"}};
-        for (int i = 0; i < cross.length; i++) {
-            for (int j = 0; j < cross[i].length; j++) {
+        String cross[][] = new String[7][7];
+        int rowLength = cross.length;
+        /**
+         * 00     06
+         *  11   15
+         *   22 24
+         *    33
+         *   42 44
+         *  51   55
+         * 60     66
+         */
+        for (int i = 0; i < rowLength; i++) {
+            int columnLength = cross[i].length;
+            for (int j = 0; j < columnLength; j++) {
+                cross[i][j] = (i == j || i == columnLength - j - 1) ? "x" : " ";
                 System.out.print(cross[i][j]);
             }
             System.out.println();
