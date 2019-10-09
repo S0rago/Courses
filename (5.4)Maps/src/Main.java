@@ -12,23 +12,24 @@ public class Main {
 
             if (checkPhone(command)) {
                 String phone = command.replaceAll("[^0-9]", "").replaceFirst("^8", "7");
-                if (!phoneBook.containsValue(phone)) {
+                if (!phoneBook.containsKey(phone)) {
                     System.out.print("Введите имя: ");
                     String name = input.nextLine();
-                    phoneBook.put(name, phone);
+                    phoneBook.put(phone, name);
                 }
             }
             else if (command.matches("LIST"))
-                for (String name : phoneBook.keySet())
-                    System.out.println(name + " - " + phoneBook.get(name));
+                for (String phone : phoneBook.keySet())
+                    System.out.println(phoneBook.get(phone) + " - " + phone);
             else if (command.matches("EXIT")) break;
             else if (command.isEmpty()) System.out.println("Неверный ввод");
             else {
-                if (!phoneBook.containsKey(command)) {
+                if (!phoneBook.containsValue(command)) {
                     System.out.print("Введите номер: ");
                     String phone = input.nextLine();
                     if (checkPhone(phone))
-                        phoneBook.put(command, phone.replaceAll("[^0-9]", "").replaceFirst("^8", "7"));
+                        if (!phoneBook.containsKey(phone))
+                            phoneBook.put(phone.replaceAll("[^0-9]", "").replaceFirst("^8", "7"), command);
                     else System.out.println("Некорректно введен номер");
                 }
             }
