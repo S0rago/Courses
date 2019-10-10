@@ -6,7 +6,6 @@ public class Main {
         long duration = 0;
         boolean found = false;
         ArrayList<String> numList = genList();
-        Collections.sort(numList);
 
         HashSet<String> hashSet = new HashSet<>(numList);
         TreeSet<String> treeSet = new TreeSet<>(numList);
@@ -23,6 +22,8 @@ public class Main {
                 duration = System.currentTimeMillis() - start;
                 System.out.println("Прямой поиск: " + duration);
 
+                Collections.sort(numList);
+                System.out.println(numList.get(numList.size()/2));
                 start = System.currentTimeMillis();
                 int index = Collections.binarySearch(numList, str);
                 duration = System.currentTimeMillis() - start;
