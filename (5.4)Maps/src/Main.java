@@ -1,5 +1,5 @@
-import java.util.HashMap;
-import java.util.Scanner;
+import javax.swing.text.html.parser.Entity;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,9 +18,9 @@ public class Main {
                     phoneBook.put(phone, name);
                 }
             }
-            else if (command.matches("LIST"))
-                for (String phone : phoneBook.keySet())
-                    System.out.println(phoneBook.get(phone) + " - " + phone);
+            else if (command.matches("LIST")) printSet(phoneBook);
+//                for (String phone : phoneBook.keySet())
+//                    System.out.println(phoneBook.get(phone) + " - " + phone);
             else if (command.matches("EXIT")) break;
             else if (command.isEmpty()) System.out.println("Неверный ввод");
             else {
@@ -35,6 +35,25 @@ public class Main {
             }
         }
     }
+
+    private static void printSet(HashMap <String, String> set) {
+        TreeMap<String, Integer> names = new TreeMap<>();
+        HashMap<String, Integer> phones = new HashMap<>();
+
+        int i = 0;
+        for (Map.Entry<String, String> item : set.entrySet()) {
+            names.put(item.getValue(), i);
+            phones.put(item.getKey(), i++);
+        }
+
+        for (Map.Entry<String, Integer> name : names.entrySet()) {
+            for (Map.Entry<String, Integer> phone : phones.entrySet()) {
+                if (name.getValue() == phone.getValue())
+                    System.out.println(name.getKey() + " - " + phone.getKey());
+            }
+        }
+    }
+
     private static boolean checkPhone(String phone) {
         return phone.matches("((\\+?7)|8)\\s*\\(?\\d{3}\\)?\\s*\\d{3}(-|\\s*)(\\d{2}(-|\\s*)){2}");
     }
