@@ -10,7 +10,8 @@ public class BankAccount {
     }
 
     public void withdraw(int amount) {
-        setMoneyAmount(getMoneyAmount() - amount);
+        if (getMoneyAmount() < amount) System.out.println("Недостаточно средств");
+        else setMoneyAmount(getMoneyAmount() - amount);
     }
 
     public void showAmount() {

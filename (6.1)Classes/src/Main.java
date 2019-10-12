@@ -5,14 +5,15 @@ public class Main {
         CardAccount cardAccount = new CardAccount();
         DepositAccount depositAccount = new DepositAccount();
 
-        bankAccount.add(10000);
-        cardAccount.add(10000);
-        depositAccount.add(10000);
+        bankAccount.add(1000);
+        cardAccount.add(1000);
+        depositAccount.add(1000);
 
         bankAccount.showAmount();
         cardAccount.showAmount();
         depositAccount.showAmount();
 
+        bankAccount.withdraw(900);
         bankAccount.withdraw(900);
         cardAccount.withdraw(900);
         depositAccount.withdraw(900);
