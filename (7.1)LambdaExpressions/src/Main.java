@@ -15,12 +15,12 @@ public class Main
         ArrayList<Employee> staff = loadStaffFromFile();
 
 
-        staff.sort((s1, s2) -> {
-            int salaryCompare = s1.getSalary().compareTo(s2.getSalary());
-            //Если зарплаты равны, сравниваем имена
-            return (salaryCompare == 0) ? s1.getName().compareTo(s2.getName()) : salaryCompare;
-        });
-
+//        staff.sort((s1, s2) -> {
+//            int salaryCompare = s1.getSalary().compareTo(s2.getSalary());
+//            //Если зарплаты равны, сравниваем имена
+//            return (salaryCompare == 0) ? s1.getName().compareTo(s2.getName()) : salaryCompare;
+//        });
+        staff.sort(Comparator.comparing(Employee::getSalary).thenComparing(Employee::getName));
         for (Employee emp : staff) {
             System.out.println(emp);
         }
