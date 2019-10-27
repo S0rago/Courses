@@ -113,7 +113,8 @@ public class RouteCalculator
                 }
             }
         }
-        return route;
+        //если пересадок две, то null
+        return (route.isEmpty()) ? null : route;
     }
 
     private boolean isConnected(Station station1, Station station2)
