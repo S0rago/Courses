@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<loggconfiguration status="WARN">
+    <appenders>
+        <File name="StationsFile" fileName="logs/allStations.log">
+            <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{yyyy-mm-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <File name="ErrStationsFile" fileName="logs/errStations.log">
+            <PatternLayout pattern="%d{yyyy-mm-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <LevelRangeFilter minLevel="WARN" maxLevel="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+        <File name="ExceptionsFile" fileName="logs/exceptions.log">
+            <PatternLayout pattern="%d{yyyy-mm-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+    </appenders>
+
+    <loggers>
+        <root level="debug">
+            <appender-ref ref="ErrStationsFile" level="WARN"/>
+            <appender-ref ref="StationsFile" level="INFO"/>
+            <appender-ref ref="ExceptionsFile" level="ERROR"/>
+        </root>
+    </loggers>
+</loggconfiguration>
