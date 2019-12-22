@@ -1,9 +1,13 @@
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.FileWriter;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
@@ -23,7 +27,7 @@ public class Main {
     private static TreeMap<String,String> lines = new TreeMap<>();
     private static List<Station> stations = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Elements tables = doc.select("table.sortable");
         for (Element tab : tables) {
             Elements rows = tab.select("tbody tr");
@@ -32,28 +36,19 @@ public class Main {
                 if (!tds.text().isBlank()) parseRow(tds);
             }
         }
+        addStationsToJSON();
     }
 
     private static void parseRow(Elements els) {
         String lineNum = els.get(0).select("span").first().text();
         String lineName = els.get(0).select("span").attr("title");
         String station = els.get(1).select("a[href]").get(0).text();
-        List<String> cons = getCons(els.get(3)); //TODO Parse cons from links
+        List<String> cons = getCons(els.get(3));
 
         Station st = new Station(lineNum, lineName, cons);
         stations.add(st);
+        lines.putIfAbsent(lineNum, lineName);
         System.out.println(lineNum + " - " + lineName + " - " + station + " - " + cons);
-    }
-
-    private static void addStationsToJSON() {
-
-    }
-
-    private static void addLinesToJSON() {
-
-    }
-
-    private static void writeToJSON() {
     }
 
     private static List<String> getCons(Element el) {
@@ -61,11 +56,23 @@ public class Main {
         el.select("a").forEach(a -> {
             String decoded = URLDecoder.decode(a.attr("href"), StandardCharsets.UTF_8);
             for (String part : decoded.split(" ")) {
-                String con = part.replace("/wiki/", "").replaceAll("_\\(.*?\\)", "");
+                String con = part.replace("/wiki/", "")
+                        .replaceAll("_", " ")
+                        .replaceAll(" \\(.*?\\)", "");
                 conList.add(con);
             }
         });
         return conList;
-        //TODO Find a way to parse connections (go to con link and get name?)
+    }
+
+    private static void addStationsToJSON() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        objectMapper.writeValue(new FileOutputStream("src/main/test.json"), stations);
+    }
+
+    private static void addLinesToJSON() {
+
     }
 }
