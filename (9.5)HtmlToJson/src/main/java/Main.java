@@ -1,17 +1,19 @@
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Main {
     private static Document doc;
@@ -36,19 +38,19 @@ public class Main {
                 if (!tds.text().isBlank()) parseRow(tds);
             }
         }
-        addStationsToJSON();
+        writeToJSON();
     }
 
     private static void parseRow(Elements els) {
         String lineNum = els.get(0).select("span").first().text();
         String lineName = els.get(0).select("span").attr("title");
-        String station = els.get(1).select("a[href]").get(0).text();
+        String stationName = els.get(1).select("a[href]").get(0).text();
         List<String> cons = getCons(els.get(3));
 
-        Station st = new Station(lineNum, lineName, cons);
+        Station st = new Station(lineNum, stationName, cons);
         stations.add(st);
         lines.putIfAbsent(lineNum, lineName);
-        System.out.println(lineNum + " - " + lineName + " - " + station + " - " + cons);
+        System.out.println(lineNum + " - " + lineName + " - " + stationName + " - " + cons);
     }
 
     private static List<String> getCons(Element el) {
@@ -65,14 +67,35 @@ public class Main {
         return conList;
     }
 
-    private static void addStationsToJSON() throws IOException {
+    private static void writeToJSON() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        ObjectNode objectNode = objectMapper.createObjectNode();
 
-        objectMapper.writeValue(new FileOutputStream("src/main/test.json"), stations);
+        addStationsToJSON(objectMapper, objectNode);
+        addLinesToJSON(objectMapper, objectNode);
+        objectMapper.writeValue(new FileOutputStream("src/main/test.json", false), objectNode);
     }
 
-    private static void addLinesToJSON() {
+    private static void addStationsToJSON(ObjectMapper objectMapper, ObjectNode objectNode) {
+        ObjectNode stationNode = objectMapper.createObjectNode();
+        for(String lineName : lines.keySet()) {
+            List<String> line = new ArrayList<>();
+            stations.stream().filter(st -> st.getLine().equals(lineName)).forEach(st -> line.add(st.getName()));
+            stationNode.putPOJO(lineName, line);
+        }
+        objectNode.putPOJO("Stations", stationNode);
+    }
 
+    private static void addLinesToJSON(ObjectMapper objectMapper, ObjectNode objectNode) {
+        ArrayNode linesNode = objectMapper.createArrayNode();
+
+        for (Map.Entry<String, String> entry : lines.entrySet()) {
+            ObjectNode oneNode = objectMapper.createObjectNode();
+            oneNode.put("number", entry.getKey());
+            oneNode.put("name", entry.getValue());
+            linesNode.add(oneNode);
+        }
+        objectNode.putPOJO("lines", linesNode);
     }
 }
