@@ -20,7 +20,6 @@ public class LinkedPurchase implements Serializable {
     private String courseName;
     private int price;
 
-    @Id
     @Column(name = "subscription_date")
     private Date subscriptionDate;
 
