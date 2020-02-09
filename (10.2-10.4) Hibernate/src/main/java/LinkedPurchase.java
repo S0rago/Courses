@@ -4,17 +4,18 @@ import java.util.Date;
 
 @Entity
 @Table(name = "linkedpurchaselist")
-public class LinkedPurchase implements Serializable {
+@IdClass(LinkedPurchase.LinkedPurchaseKey.class)
+public class LinkedPurchase {
     @Id
     @Column(name = "student_id")
     private int studentId;
 
-    @Column(name = "student_name")
-    private String studentName;
-
     @Id
     @Column(name = "course_id")
     private int courseId;
+
+    @Column(name = "student_name")
+    private String studentName;
 
     @Column(name = "course_name")
     private String courseName;
@@ -53,4 +54,25 @@ public class LinkedPurchase implements Serializable {
 
     public Date getSubscriptionDate() { return subscriptionDate; }
     public void setSubscriptionDate(Date subscriptionDate) { this.subscriptionDate = subscriptionDate; }
+
+    @Embeddable
+    public static class LinkedPurchaseKey implements Serializable {
+
+        private int studentId;
+        private int courseId;
+
+        public LinkedPurchaseKey() {
+        }
+
+        public LinkedPurchaseKey(int studentId, int courseId) {
+            this.studentId = studentId;
+            this.courseId = courseId;
+        }
+
+        public int getStudentId() { return studentId; }
+        public void setStudentId(int studentId) { this.studentId = studentId; }
+
+        public int getCourseId() { return courseId; }
+        public void setCourseId(int courseId) { this.courseId = courseId; }
+    }
 }
