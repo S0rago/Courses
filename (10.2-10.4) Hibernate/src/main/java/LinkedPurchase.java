@@ -55,7 +55,6 @@ public class LinkedPurchase {
     public Date getSubscriptionDate() { return subscriptionDate; }
     public void setSubscriptionDate(Date subscriptionDate) { this.subscriptionDate = subscriptionDate; }
 
-    @Embeddable
     public static class LinkedPurchaseKey implements Serializable {
 
         private int studentId;

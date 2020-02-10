@@ -6,7 +6,7 @@ public class Main
     private static int newWidth = 300;
     public static void main(String[] args)
     {
-        System.out.println(Runtime.getRuntime().availableProcessors());
+        System.out.println(cores);
 
         //вставить пути
         String srcFolder = "src";
