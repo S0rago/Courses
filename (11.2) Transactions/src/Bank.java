@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Bank {
     private HashMap<String, Account> accounts = new HashMap<>();
@@ -8,10 +7,8 @@ public class Bank {
     public synchronized boolean isFraud(String fromAccountNum, String toAccountNum, long amount)
         throws InterruptedException {
         Thread.sleep(1000);
-        notify();
         return random.nextBoolean();
     }
-
     /**
      * TODO: реализовать метод. Метод переводит деньги между счетами.
      * Если сумма транзакции > 50000, то после совершения транзакции,
@@ -23,18 +20,17 @@ public class Bank {
         Account fromAccount = accounts.get(fromAccountNum);
         Account toAccount = accounts.get(toAccountNum);
 
-        if (amount > 50000)
-            if (isFraud(fromAccountNum, toAccountNum, amount)) {
-                wait();
-                fromAccount.Block();
-                toAccount.Block();
-                return;
-            }
-
         if (!(fromAccount.isBlocked() && toAccount.isBlocked())) {
             fromAccount.setMoney(fromAccount.getMoney() - amount);
             toAccount.setMoney(toAccount.getMoney() + amount);
         }
+
+        if (amount > 50000)
+            if (isFraud(fromAccountNum, toAccountNum, amount)) {
+                System.out.println("Blocked: " + fromAccountNum + " - " + toAccountNum + " - " + amount);
+                fromAccount.Block();
+                toAccount.Block();
+            }
     }
 
     /**
@@ -47,6 +43,7 @@ public class Bank {
     public void addAccount(String accountNum, long moneyAmount) {
         accounts.put(accountNum, new Account(moneyAmount, accountNum));
     }
+
     public List<String> getAccountNums() {
         return new ArrayList<>(accounts.keySet());
     }

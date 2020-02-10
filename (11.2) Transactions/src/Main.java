@@ -2,33 +2,32 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Bank bank = new Bank();
         long start = System.currentTimeMillis();
         for (int j = 0; j < 4; j++) {
             int finalJ = j;
-            new Thread(() -> {
+            Thread t = new Thread(() -> {
                 for (int i = 0; i < 100000; i++) {
                     bank.addAccount(genNumber(), ThreadLocalRandom.current().nextLong(1000000, 9000001));
                 }
                 System.out.println("DONE " + finalJ + " in " + (System.currentTimeMillis() - start));
-            }).start();
+            });
+            t.start();
+            t.join();
         }
 
         List<String> accountNums = bank.getAccountNums();
         int listSize = accountNums.size();
 
-
-        for (int j = 0; j < 8; j++) {
+        for (int j = 0; j < 5; j++) {
             new Thread(() -> {
                 try {
-                    Thread.sleep(1000);
-                    System.out.println("Records: " + listSize);
-                    for (int i = 0; i < 100000; i++) {
-                        bank.transfer(accountNums.get(ThreadLocalRandom.current().nextInt(0, listSize)),
-                                accountNums.get(ThreadLocalRandom.current().nextInt(0, listSize)),
-                                ThreadLocalRandom.current().nextLong(0, 200000));
-                    }
+                    String fromAccNum = accountNums.get(ThreadLocalRandom.current().nextInt(0, listSize));
+                    String toAccNum = accountNums.get(ThreadLocalRandom.current().nextInt(0, listSize));
+                    long amount = ThreadLocalRandom.current().nextLong(0, 200000);
+                    for (int i = 0; i < 4; i++)
+                        bank.transfer(fromAccNum, toAccNum, amount);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
