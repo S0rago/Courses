@@ -27,7 +27,7 @@ public class Bank {
 
         if (amount > 50000)
             if (isFraud(fromAccountNum, toAccountNum, amount)) {
-                System.out.println("Blocked: " + fromAccountNum + " - " + toAccountNum + " - " + amount);
+                System.out.println(Thread.currentThread().getName() + ": " + "blocked " + fromAccountNum + " - " + toAccountNum + " - " + amount);
                 fromAccount.Block();
                 toAccount.Block();
             }

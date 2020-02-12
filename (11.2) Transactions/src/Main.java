@@ -23,11 +23,13 @@ public class Main {
         for (int j = 0; j < 5; j++) {
             new Thread(() -> {
                 try {
-                    String fromAccNum = accountNums.get(ThreadLocalRandom.current().nextInt(0, listSize));
-                    String toAccNum = accountNums.get(ThreadLocalRandom.current().nextInt(0, listSize));
-                    long amount = ThreadLocalRandom.current().nextLong(0, 200000);
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < 4; i++) {
+                        String fromAccNum = accountNums.get(ThreadLocalRandom.current().nextInt(0, listSize));
+                        String toAccNum = accountNums.get(ThreadLocalRandom.current().nextInt(0, listSize));
+                        long amount = ThreadLocalRandom.current().nextLong(0, 200000);
+                        System.out.println(Thread.currentThread().getName() + ": " + fromAccNum + " - " + toAccNum + " - " + amount);
                         bank.transfer(fromAccNum, toAccNum, amount);
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
