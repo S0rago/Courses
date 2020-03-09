@@ -1,10 +1,11 @@
+import java.awt.image.PackedColorModel;
 import java.util.*;
 
 public class Bank {
-    private HashMap<String, Account> accounts = new HashMap<>();
+    private volatile HashMap<String, Account> accounts = new HashMap<>();
     private final Random random = new Random();
 
-    public synchronized boolean isFraud(String fromAccountNum, String toAccountNum, long amount)
+    public synchronized boolean isFraud(Account fromAccount, Account toAccount, long amount)
         throws InterruptedException {
         Thread.sleep(1000);
         return random.nextBoolean();
@@ -16,21 +17,45 @@ public class Bank {
      * метод isFraud. Если возвращается true, то делается блокировка
      * счетов (как – на ваше усмотрение)
      */
-    public void transfer(String fromAccountNum, String toAccountNum, long amount) throws InterruptedException {
-        Account fromAccount = accounts.get(fromAccountNum);
-        Account toAccount = accounts.get(toAccountNum);
+    public void transfer(Account fromAccount, Account toAccount, long amount) throws InterruptedException {
 
-        if (!(fromAccount.isBlocked() && toAccount.isBlocked())) {
-            fromAccount.setMoney(fromAccount.getMoney() - amount);
-            toAccount.setMoney(toAccount.getMoney() + amount);
-        }
+        int fromId = Integer.parseInt(fromAccount.getAccNumber());
+        int toId = Integer.parseInt(toAccount.getAccNumber());
 
-        if (amount > 50000)
-            if (isFraud(fromAccountNum, toAccountNum, amount)) {
-                System.out.println(Thread.currentThread().getName() + ": " + "blocked " + fromAccountNum + " - " + toAccountNum + " - " + amount);
-                fromAccount.Block();
-                toAccount.Block();
+        if (fromAccount.isUnlocked() && toAccount.isUnlocked() && fromAccount.getMoney() >= amount) {
+            if (fromId < toId) {
+                synchronized (fromAccount) {
+                    synchronized (toAccount) {
+                        fromAccount.withdraw(amount);
+                        toAccount.deposit(amount);
+                        System.out.println(Thread.currentThread().getName() + ": transferred " + fromAccount.getAccNumber() + " - " + toAccount.getAccNumber() + " - " + amount);
+
+                        if (amount > 50000)
+                            if (isFraud(fromAccount, toAccount, amount)) {
+                                fromAccount.block();
+                                toAccount.block();
+                                System.out.println(Thread.currentThread().getName() + ": blocked " + fromAccount.getAccNumber() + " - " + toAccount.getAccNumber() + " - " + amount);
+                            }
+                    }
+                }
             }
+            else {
+                synchronized (toAccount) {
+                    synchronized (fromAccount) {
+                        fromAccount.withdraw(amount);
+                        toAccount.deposit(amount);
+                        System.out.println(Thread.currentThread().getName() + ": transferred " + fromAccount.getAccNumber() + " - " + toAccount.getAccNumber() + " - " + amount);
+
+                        if (amount > 50000)
+                            if (isFraud(fromAccount, toAccount, amount)) {
+                                fromAccount.block();
+                                toAccount.block();
+                                System.out.println(Thread.currentThread().getName() + ": blocked " + fromAccount.getAccNumber() + " - " + toAccount.getAccNumber() + " - " + amount);
+                            }
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -46,5 +71,9 @@ public class Bank {
 
     public List<String> getAccountNums() {
         return new ArrayList<>(accounts.keySet());
+    }
+
+    public Account getAccount(String accNum) {
+        return accounts.get(accNum);
     }
 }
