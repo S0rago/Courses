@@ -26,32 +26,14 @@ public class Bank {
             if (fromId < toId) {
                 synchronized (fromAccount) {
                     synchronized (toAccount) {
-                        fromAccount.withdraw(amount);
-                        toAccount.deposit(amount);
-                        System.out.println(Thread.currentThread().getName() + ": transferred " + fromAccount.getAccNumber() + " - " + toAccount.getAccNumber() + " - " + amount);
-
-                        if (amount > 50000)
-                            if (isFraud(fromAccount, toAccount, amount)) {
-                                fromAccount.block();
-                                toAccount.block();
-                                System.out.println(Thread.currentThread().getName() + ": blocked " + fromAccount.getAccNumber() + " - " + toAccount.getAccNumber() + " - " + amount);
-                            }
+                        makeTransaction(fromAccount, toAccount, amount);
                     }
                 }
             }
             else {
                 synchronized (toAccount) {
                     synchronized (fromAccount) {
-                        fromAccount.withdraw(amount);
-                        toAccount.deposit(amount);
-                        System.out.println(Thread.currentThread().getName() + ": transferred " + fromAccount.getAccNumber() + " - " + toAccount.getAccNumber() + " - " + amount);
-
-                        if (amount > 50000)
-                            if (isFraud(fromAccount, toAccount, amount)) {
-                                fromAccount.block();
-                                toAccount.block();
-                                System.out.println(Thread.currentThread().getName() + ": blocked " + fromAccount.getAccNumber() + " - " + toAccount.getAccNumber() + " - " + amount);
-                            }
+                        makeTransaction(fromAccount, toAccount, amount);
                     }
                 }
             }
@@ -68,12 +50,25 @@ public class Bank {
     public void addAccount(String accountNum, long moneyAmount) {
         accounts.put(accountNum, new Account(moneyAmount, accountNum));
     }
+   
+    public Account getAccount(String accNum) {
+        return accounts.get(accNum);
+    }
 
     public List<String> getAccountNums() {
         return new ArrayList<>(accounts.keySet());
     }
 
-    public Account getAccount(String accNum) {
-        return accounts.get(accNum);
+    private void makeTransaction(Account fromAccount, Account toAccount, long amount) {
+        fromAccount.withdraw(amount);
+        toAccount.deposit(amount);
+        System.out.println(Thread.currentThread().getName() + ": transferred " + fromAccount.getAccNumber() + " - " + toAccount.getAccNumber() + " - " + amount);
+
+        if (amount > 50000)
+            if (isFraud(fromAccount, toAccount, amount)) {
+                fromAccount.block();
+                toAccount.block();
+                System.out.println(Thread.currentThread().getName() + ": blocked " + fromAccount.getAccNumber() + " - " + toAccount.getAccNumber() + " - " + amount);
+            }
     }
 }
