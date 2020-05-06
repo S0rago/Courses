@@ -41,10 +41,10 @@ public class LinkAction extends RecursiveAction {
                 if (href.contains(mainLink) && !linkSet.contains(href)) {
                     synchronized (mutexObj) {
                         linkSet.add(href);
-                        LinkAction action = new LinkAction(href);
-                        action.fork();
-                        actionList.add(action);
                     }
+                    LinkAction action = new LinkAction(href);
+                    action.fork();
+                    actionList.add(action);
                 }
             }
             for (LinkAction action : actionList)
