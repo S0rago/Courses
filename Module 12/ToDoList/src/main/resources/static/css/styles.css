@@ -1,0 +1,8 @@
+#save-form {
+    display: none;
+}
+
+#save-form * {
+    margin-bottom: 15px;
+    margin-right: 15px;
+}

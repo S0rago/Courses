@@ -1,0 +1,58 @@
+Overview:
+Vaan is the highly anticipated unit for quite a few reasons. Not his character though, not too many people like him as a protagonist.
+
+His base stats are really well rounded with high HP, DEF and SPR but focuses a lot of his ATK. Which can be used properly unlike a good bunch of other breakers. And while he does have 100% TDH, his own TMR focuses on TDW, it's easier to cap and can use the 6x chain cap. Other than that, he has only 120% ATK, which is significantly lower than meta damage dealers.
+In terms of survivability, he can be built in different fashions. His innate 70% HP and total 60% physical evasion can turn him into an evader extremely easily, and if you want some SPR and don't care about dealing damage, equipping a shield will grant another 40% SPR and 10% HP. In the meta section I'll go over the different build choices that SoF Vaan can utilise.
+He's resistant against paralyze through his TMR ability and through his TMR, double the trouble, petrification, poison and disease, which overall are decent resistances but leave out important ones such as Sleep or Confusion. He does have a 100% beast / human killer though, which are very common enemy types and his damage is definitely not bad either.
+
+SoF Vaan can W-/T-Cast all of his abilities except for Luminescence, which is a shame as it is his only form of chaining via Aureole Ray. With Dualwield you can still cast it twice, which can be paired with MM Xon, Regis, Nichol of the Epsilon Star or if you're using her, SS Charlotte. It's a solid option for DV, though you'll have to seperate it from all other actions due to the limitations on it.
+
+To match his massive 60% innate evasion well, SoF Vaan can use a 100% provoke that lasts 2 turns easily due to the T-Cast, but we'll talk about better options later down the road.
+
+From here on, SoF Vaan has a set of incredible breaks and decent finishers. We'll start off with his damage options and then take a closer look at his breaking capabilities.
+
+Vaan is really simple when it comes down to acting as a side finisher. He has three different finishers with 2000% modifiers, buffed up to 3000% later on, that either apply an 80% ST fullbreak or 120% fire wind imperil while unlocking stronger versions of themselves. The fullbreak itself is extremely useful to have on-demand and if his LB isn't available his best source of breaks.
+
+After using the Fire or Wind Achilles, True versions will be unlocked that will keep unlocking themselves each time you use them. If you wait too long, you'll have to use the regular versions once.
+The difference isn't huge but sets a milestone in the FFBE meta: 130% imperils. SoF Vaan is the first unit to provide us with 130% imperils. The finishers are also slightly stronger with 2200% / 3200% modifiers.
+
+How do you gain the modifier boost?
+Through Earthen Eruption, which is his first CD, available at Turn 1 with a 4 turn cooldown and neat self-buffs. For one, the 1000% modifier boost on all prior abilities as well as Red Spiral, his main finisher, while having a 4000% modifier itself and granting us a 250% ATK buff for 5 turns. Thus easily maintainable.
+Red Spiral itself is a plain 3500% / 4500% finisher that's on-demand and can be fit in whenever you want.
+
+Outside of his ST 80% fullbreak, Vaan also has an on-demand AoE 75% fullbreak, which, yet again, is a great one to have on-demand, though due to the T-Cast you might just want the ST version a few times.
+
+If that doesn't suffice, he is a CG Protagonist and thus gets his LB filled up fully at the start of the battle and it's amazing. It costs 34 crysts so can be a bit finicky to maintain without external support, but it surely does the job. An AoE 2 turn 85% fullbreak and an AoE 130% fire imperil while dealing decent-ish damage, which is nice for mob / event clearing. If you want a unit for events, this is likely the best deal. Instant access, huge breaks and imperil before dealing damage and then a nice mod.
+The breaks compete with last banner's Healing Avatar Lid with less turn duration but the novelty of having it available at Turn 1. Which makes this the highest Turn 1 break available without external support.
+
+Now, SoF Vaan still has two aces up his sleeve in form of two different CD abilities.
+
+His first one, Assault Strike+, shares the same niche as Healing Avatar Lid's though instead of having a 4 turn cooldown, has 6 turns. It's still a removal of all enemy buffs, leaving on all of your debuffs saving you additional work and it's just good.
+
+The second one is truely remarkable. We all love to see some AoE mirages. At least I hope we do, because I do.
+Rikku (FFX-2) is great because of the AoE mirage that she can use each turn with her multi-cast.
+SoF Vaan simply uses Jade Parry once and then immediately casts an AoE mirage. The twist? Next turn, it'll auto-cast another AoE mirage. 2 turns after again. 3 turns after yet another time. So you use Jady Parry once and receive AoE mirages 3 times each turn without having to do anything. It's on a 4 turn cooldown as well so you can maintain it all the way unless he dies.
+
+ 
+
+How does he fare in the meta?
+SoF Vaan is an amazing unit hands down and is the one you most likely want from this banner.
+
+He has two different main build choices.
+
+If you have been around for some time and obtained a lot of the event gear in the past, such as K Producer's Jacket, Wrapped Gift and most importantly Moogle Charm, as well as grinded the FF12 event materia that grants 10% auto-provoke and physical evasion, you can gear him towards auto-provoke and evasion. All that on a unit with amazing breaks and other really good utility as well as a decent amount of finisher damage or AR chains.
+
+If you don't need that because your e.g. Paladin Cecil absorbs everything by default, you might want to focus all on ATK because while his damage per se isn't as huge as other finishers, he's an excellent breaker and doesn't rely on more damage. It's there for you, for free, as long as you have natural chains going on you can just slap them in. His average damage that way is similar to WH Raegen, so it's excellent side damage for sure. "For free".
+
+As the breaker role has it, I wouldn't say he's straight up the best breaker or outclasses Healing Avatar Lid, because he doesn't.
+He has a way inferior chaining game and can't grant his allies AMoE chains either, but if you're already settled on chainers in your team then I'd definitely recommend SoF Vaan over her any day of the week.
+That being said, he CAN still chain. Not super well, but you could break on Turn 1 with his LB and then AR chain with e.g. MM Xon.
+
+For Dark Visions you could build him a bit more tankier if there are ambushes, outside of that can act as an amazing breaker due to his LB always being available at the start, even if you don't use it immediately on Turn 1. You don't have to build anything up and if you finish the fight on Turn 1 or Turn 2 is very likely the best option to use.
+
+Definitely another well designed unit with cool niches similar to what people used Kryla for. With higher breaks and AoE mirages.
+
+His TMR is so and so, great for him as it perfectly fits and could also be used for an evade provoking MM Xon, but 50% TDW with 20% phys dodge is often inferior to 50% TDW + ATK% or Dual Form (100% TDW).
+His STMR is the perfect fit for the type of build SoF Vaan goes for. 163 ATK, 30% phys dodge and 30% auto-provoke, which means this is also the first weapon we have to get 30% auto provoke.
+In terms of Auto-Provoke, it'd ease up on the chest slot and another materia slot while obviously granting 30% evasion on top of that.
+Even as another 30% evasion weapon itself it's great as the 30% provoke will be ignored as long as another unit has 100%. So you can pair it up with Butterfly Knives or Locke's Dagger and boom. One of the few STMRs I might actually STMR moogle simply because it can be used on so many different builds and benefit from a lot. Heck, even Paladin Cecil could use this extremely well.
